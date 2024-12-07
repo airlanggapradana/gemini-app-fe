@@ -1,32 +1,34 @@
-import RegisterForm from "@/components/RegisterForm";
+import LoginForm from "@/components/LoginForm";
 import Link from "next/link";
+import React from "react";
 
-export default function HomePage() {
+const LoginPage = () => {
   return (
     <main className="flex min-h-screen w-full flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
       <div className="mx-auto max-w-screen-lg px-5">
         <div className="space-y-3">
           <h1 className="mx-auto max-w-md text-center text-5xl font-bold leading-snug">
-            Get Started with <span className="text-indigo-500">Gemini API</span>
+            Login
           </h1>
           <p className="mx-auto max-w-xl text-center font-light italic leading-relaxed text-gray-100">
-            this is a personal project to learn about the gemini api and how to
-            integrate it into a nextjs application.
+            sign in with your existing account
           </p>
         </div>
 
         {/* Form */}
-        <RegisterForm />
+        <LoginForm />
 
         <p className="mt-5 text-center text-sm text-gray-500">
-          already have an account?{" "}
+          don&apos;t have an account?{" "}
           <span>
-            <Link href={"/login"} className="italic text-blue-500">
-              Sign in
+            <Link href={"/"} className="italic text-blue-500">
+              Sign up
             </Link>
           </span>
         </p>
       </div>
     </main>
   );
-}
+};
+
+export default LoginPage;

@@ -14,6 +14,8 @@ import {
 import { Input } from "./ui/input";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { register } from "@/actions/apiActions";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   fname: z.string().min(2, {
@@ -29,6 +31,7 @@ const formSchema = z.object({
 });
 
 const RegisterForm = () => {
+  const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -41,8 +44,12 @@ const RegisterForm = () => {
 
   const onSubmit: SubmitHandler<z.infer<typeof formSchema>> = async (data) => {
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    console.log(data);
-    form.reset();
+    const response = await register(data);
+
+    if (response.status === 201) {
+      form.reset();
+      router.push("/login");
+    }
   };
 
   return (
