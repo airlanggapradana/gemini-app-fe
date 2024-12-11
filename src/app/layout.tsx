@@ -13,7 +13,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${GeistSans.variable}`}>
+    <html lang="en" className={`${GeistSans.variable} scroll-smooth`}>
       <body>{children}</body>
     </html>
   );
