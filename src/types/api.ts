@@ -38,3 +38,16 @@ export interface jwtPayload {
   iat: number;
   exp: number;
 }
+
+export interface History {
+  message: string;
+  data: HistoryData;
+}
+
+export interface HistoryData {
+  id: string;
+  prompt: string;
+  result: string;
+  createdAt: Date;
+  history_id: string;
+}

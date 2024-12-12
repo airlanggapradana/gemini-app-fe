@@ -16,6 +16,9 @@ import {
 } from "@/components/ui/form";
 import { formatText } from "@/lib/formattingText";
 import Chat from "./Chat";
+import { jwtPayload } from "@/types/api";
+import { storePromptAndResult } from "@/actions/apiActions";
+import { useDebounce } from "use-debounce";
 
 const promptSchema = z.object({
   prompt: z.string().min(3, {
@@ -23,12 +26,24 @@ const promptSchema = z.object({
   }),
 });
 
-const UserPrompt = () => {
+const UserPrompt = ({ session }: { session: jwtPayload }) => {
   const genAI = new GoogleGenerativeAI(env.NEXT_PUBLIC_GEMINI_API);
   const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
 
   const [result, setResult] = React.useState("");
   const [prompt, setPrompt] = React.useState("");
+
+  const [debouncedVal] = useDebounce({ prompt, result }, 5000);
+
+  React.useEffect(() => {
+    if (debouncedVal.prompt && debouncedVal.result !== "") {
+      storePromptAndResult({
+        prompt: debouncedVal.prompt,
+        result: debouncedVal.result,
+        user_id: session.user_id,
+      });
+    }
+  }, [debouncedVal.prompt]);
 
   const form = useForm({
     resolver: zodResolver(promptSchema),
@@ -43,7 +58,7 @@ const UserPrompt = () => {
     setPrompt("");
     setResult("");
     const response = await model.generateContentStream(data.prompt);
-    const prompt = setPrompt(data.prompt);
+    setPrompt(data.prompt);
     form.reset();
     for await (const chunk of response.stream) {
       const chunkText = chunk.text();

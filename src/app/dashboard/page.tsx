@@ -64,7 +64,7 @@ const Dashboard = async () => {
         </div>
       </div>
 
-      <UserPrompt />
+      <UserPrompt session={userData} />
     </>
   );
 };
