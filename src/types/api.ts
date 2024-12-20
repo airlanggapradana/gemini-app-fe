@@ -51,3 +51,40 @@ export interface HistoryData {
   createdAt: Date;
   history_id: string;
 }
+
+export interface User {
+  message: string;
+  data: UserData;
+}
+
+export interface UserData {
+  user_id: string;
+  fname: string;
+  lname: string;
+  email: string;
+  password: string;
+  createdAt: Date;
+  updatedAt: Date;
+  histories: History[];
+}
+
+export interface History {
+  id: string;
+  prompt: string;
+  result: string;
+  createdAt: Date;
+  history_id: string;
+}
+
+export interface SinglePost {
+  message: string;
+  data: SinglePostData;
+}
+
+export interface SinglePostData {
+  id: string;
+  prompt: string;
+  result: string;
+  createdAt: Date;
+  history_id: string;
+}

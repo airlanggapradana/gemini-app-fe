@@ -1,6 +1,12 @@
 import axios from "axios";
 import { env } from "@/env";
-import { register as Register, login as Login, History } from "@/types/api";
+import {
+  register as Register,
+  login as Login,
+  History,
+  User,
+  SinglePost,
+} from "@/types/api";
 
 export const register = async (data: {
   fname: string;
@@ -38,5 +44,27 @@ export const storePromptAndResult = async (payload: {
   return {
     status: res.status,
     data: res.data as History,
+  };
+};
+
+export const getHistory = async (user_id: string) => {
+  const res = await axios.get(`${env.NEXT_PUBLIC_API_PORT}/user/${user_id}`);
+
+  const data = res.data as User;
+
+  const history = data.data.histories;
+
+  return {
+    status: res.status,
+    data: history,
+  };
+};
+
+export const getSingleHistory = async (post_id: string) => {
+  const res = await axios.get(`${env.NEXT_PUBLIC_API_PORT}/history/${post_id}`);
+
+  return {
+    status: res.status,
+    data: res.data as SinglePost,
   };
 };

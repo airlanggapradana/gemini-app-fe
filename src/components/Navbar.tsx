@@ -13,7 +13,16 @@ const Navbar = () => {
           >
             Gemini
           </Link>
-          <SignOutBtn />
+
+          <div className="flex items-center gap-5">
+            <Link
+              href={"/dashboard/history"}
+              className="text-base font-medium text-gray-700"
+            >
+              History
+            </Link>
+            <SignOutBtn />
+          </div>
         </div>
       </nav>
     </main>

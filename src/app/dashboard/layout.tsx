@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import { Github, Instagram } from "lucide-react";
 import Link from "next/link";
+import TanstackProvider from "@/lib/TanstackProvider";
 
 export default async function DashboardRootLayout({
   children,
@@ -28,7 +29,7 @@ export default async function DashboardRootLayout({
   }
 
   return (
-    <>
+    <TanstackProvider>
       <Navbar />
       <main className="flex min-h-screen flex-col items-center justify-center">
         <div className="w-full">
@@ -53,6 +54,6 @@ export default async function DashboardRootLayout({
           </footer>
         </div>
       </main>
-    </>
+    </TanstackProvider>
   );
 }
