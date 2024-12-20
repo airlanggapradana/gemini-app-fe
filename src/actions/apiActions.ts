@@ -68,3 +68,14 @@ export const getSingleHistory = async (post_id: string) => {
     data: res.data as SinglePost,
   };
 };
+
+export const deleteHistory = async (post_id: string) => {
+  const res = await axios.delete(
+    `${env.NEXT_PUBLIC_API_PORT}/history/${post_id}`,
+  );
+
+  return {
+    status: res.status,
+    data: res.data as { message: string },
+  };
+};
