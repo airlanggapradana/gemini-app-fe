@@ -13,10 +13,6 @@
     "strict": true,
     "noUncheckedIndexedAccess": true,
     "checkJs": true,
-    "@typescript-eslint/no-floating-promises": false,
-    "@typescript-eslint/consistent-type-imports": false,
-    "@typescript-eslint/no-unsafe-assignment": false,
-    "@typescript-eslint/prefer-nullish-coalescing": false,
 
     /* Bundled projects */
     "lib": ["dom", "dom.iterable", "ES2022"],
