@@ -14,7 +14,7 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
-import { formatText } from "@/lib/formattingText";
+import { LLMResponse } from "@/lib/formattingText";
 import Chat from "./Chat";
 import { jwtPayload } from "@/types/api";
 import { storePromptAndResult } from "@/actions/apiActions";
@@ -62,7 +62,7 @@ const UserPrompt = ({ session }: { session: jwtPayload }) => {
     form.reset();
     for await (const chunk of response.stream) {
       const chunkText = chunk.text();
-      setResult((prev) => prev + formatText(chunkText));
+      setResult((prev) => prev + chunkText);
     }
   };
 

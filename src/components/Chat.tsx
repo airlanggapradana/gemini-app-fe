@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { LLMResponse } from "@/lib/formattingText";
 
 interface ChatProps {
   prompt?: string;
@@ -31,7 +32,7 @@ const Chat: React.FC<ChatProps> = ({ prompt, result }) => {
                 <CardTitle>Gemini</CardTitle>
               </CardHeader>
               <CardContent>
-                <p dangerouslySetInnerHTML={{ __html: result }}></p>
+                <LLMResponse content={result} />
               </CardContent>
             </Card>
           </div>

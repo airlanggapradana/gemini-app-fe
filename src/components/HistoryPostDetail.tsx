@@ -14,6 +14,7 @@ import { deleteHistory, getSingleHistory } from "@/actions/apiActions";
 import { format } from "date-fns";
 import { id } from "date-fns/locale";
 import { useRouter } from "next/navigation";
+import { LLMResponse } from "@/lib/formattingText";
 
 const HistoryPostDetail = ({ post_id }: { post_id: string }) => {
   const router = useRouter();
@@ -46,7 +47,7 @@ const HistoryPostDetail = ({ post_id }: { post_id: string }) => {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <p dangerouslySetInnerHTML={{ __html: result.data.result }}></p>
+        <LLMResponse content={result.data.result} />
       </CardContent>
       <CardFooter>
         <Button
