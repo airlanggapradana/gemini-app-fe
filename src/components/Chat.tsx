@@ -32,7 +32,17 @@ const Chat: React.FC<ChatProps> = ({ prompt, result }) => {
                 <CardTitle>Gemini</CardTitle>
               </CardHeader>
               <CardContent>
-                <LLMResponse content={result} />
+                <LLMResponse
+                  content={result}
+                  options={{
+                    enableBlockquotes: true,
+                    enableCodeBlocks: true,
+                    enableCustomColors: true,
+                    enableHighlighting: true,
+                    enableLinks: true,
+                    listStyle: "disc",
+                  }}
+                />
               </CardContent>
             </Card>
           </div>

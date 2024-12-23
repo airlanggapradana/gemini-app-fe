@@ -14,7 +14,7 @@ const SignOutBtn = () => {
         router.refresh();
       }}
     >
-      Sign Out
+      Keluar
     </Button>
   );
 };

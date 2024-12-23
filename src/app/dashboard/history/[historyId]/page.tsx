@@ -9,7 +9,7 @@ const HistoryDetail = async ({
 }) => {
   const historyId = (await params).historyId;
   return (
-    <main className="w-full space-y-5">
+    <main className="mt-20 w-full space-y-5">
       <BackButton />
       <HistoryPostDetail post_id={historyId} />
     </main>

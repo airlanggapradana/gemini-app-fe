@@ -47,7 +47,17 @@ const HistoryPostDetail = ({ post_id }: { post_id: string }) => {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <LLMResponse content={result.data.result} />
+        <LLMResponse
+          content={result.data.result}
+          options={{
+            enableBlockquotes: true,
+            enableCodeBlocks: true,
+            enableCustomColors: true,
+            enableHighlighting: true,
+            enableLinks: true,
+            listStyle: "disc",
+          }}
+        />
       </CardContent>
       <CardFooter>
         <Button

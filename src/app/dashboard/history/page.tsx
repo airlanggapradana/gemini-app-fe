@@ -13,7 +13,7 @@ const History = async () => {
 
   return (
     <>
-      <div className="mb-10 flex flex-col items-start justify-center">
+      <div className="mb-10 mt-12 flex flex-col items-start justify-center gap-5">
         <BackButton />
         <div className="mb-5 w-full space-y-3">
           <h1 className="bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-4xl font-extrabold text-transparent">

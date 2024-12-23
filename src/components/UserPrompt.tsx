@@ -14,7 +14,6 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
-import { LLMResponse } from "@/lib/formattingText";
 import Chat from "./Chat";
 import { jwtPayload } from "@/types/api";
 import { storePromptAndResult } from "@/actions/apiActions";
@@ -57,7 +56,17 @@ const UserPrompt = ({ session }: { session: jwtPayload }) => {
   ) => {
     setPrompt("");
     setResult("");
-    const response = await model.generateContentStream(data.prompt);
+    const response =
+      await model.generateContentStream(`Please format your response with HTML tags using these guidelines:
+- Use <b> for important terms
+- Structure content with <h1>, <h2>, <h3> for headings
+- Use <ul> and <li> for lists
+- Add <p> tags for paragraphs
+- Include <mark> for highlighting
+- Use <code> for technical terms
+- Add <blockquote> for important notes
+
+Topic: ${data.prompt}`);
     setPrompt(data.prompt);
     form.reset();
     for await (const chunk of response.stream) {
@@ -69,7 +78,7 @@ const UserPrompt = ({ session }: { session: jwtPayload }) => {
   return (
     <main className="mb-14 space-y-5">
       <h1 className="bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-4xl font-extrabold text-transparent">
-        Try it out!
+        Coba Demo!
       </h1>
       <Form {...form}>
         <form
@@ -84,7 +93,7 @@ const UserPrompt = ({ session }: { session: jwtPayload }) => {
                 <FormControl>
                   <Input
                     type="text"
-                    placeholder="Enter your prompt..."
+                    placeholder="Masukkan prompt kamu..."
                     {...field}
                   />
                 </FormControl>
@@ -98,7 +107,7 @@ const UserPrompt = ({ session }: { session: jwtPayload }) => {
             onClick={form.handleSubmit(onSubmit)}
             disabled={form.formState.isSubmitting}
           >
-            Send
+            Tanya
           </Button>
         </form>
       </Form>
