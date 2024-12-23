@@ -38,6 +38,7 @@ const config = {
     "@typescript-eslint/no-floating-promises": "warn",
     "@typescript-eslint/no-unsafe-assignment": "warn",
     "@typescript-eslint/prefer-nullish-coalescing": "warn",
+    "@typescript-eslint/prefer-regexp-exec": "warn",
   },
 };
 module.exports = config;
